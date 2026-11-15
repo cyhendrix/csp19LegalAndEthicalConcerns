@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chapter 19 Practice — Legal and Ethical Concerns</title>
-  <link rel="stylesheet" href="style.css?v=18" />
+  <link rel="stylesheet" href="style.css?v=19-student" />
 </head>
 <body>
   <header class="hero">
@@ -42,30 +42,24 @@ window.addEventListener('error',function(e){
  if(node){node.hidden=false;node.textContent='Lesson loading error: '+(e.message||'Script could not load')+' — please send this message to your teacher.';}
 });
 </script>
-<script src="script.js?v=18" onerror="document.getElementById('labLoadError').hidden=false;document.getElementById('labLoadError').textContent='The lesson script failed to download. Check the network or try reloading.';"></script>
+<script src="script.js?v=19-student" onerror="document.getElementById('labLoadError').hidden=false;document.getElementById('labLoadError').textContent='The lesson script failed to download. Check the network or try reloading.';"></script>
 <script>
 (function(){
-const key='csp18-student-info';
+const key='csp19-student-info';
 const first=document.getElementById('studentFirst'),last=document.getElementById('studentLast'),period=document.getElementById('studentPeriod');
 try{const v=JSON.parse(localStorage.getItem(key)||'null');if(v){first.value=v.first||'';last.value=v.last||'';period.value=v.period||''}}catch(e){}
 document.getElementById('studentForm').addEventListener('submit',function(e){
 e.preventDefault();const v={first:first.value.trim(),last:last.value.trim(),period:period.value};
 if(!v.first||!v.last||!v.period){document.getElementById('studentError').textContent='Please complete all three fields.';return;}
 localStorage.setItem(key,JSON.stringify(v));
-sessionStorage.setItem('csp18-lab-started','1');
+sessionStorage.setItem('csp19-lab-started','1');
 document.getElementById('studentScreen').hidden=true;
 document.getElementById('labContent').hidden=false;
 document.getElementById('labProgress').hidden=false;
 window.scrollTo(0,0);
 });
-try{
- const saved=JSON.parse(localStorage.getItem(key)||'null');
- if(sessionStorage.getItem('csp18-lab-started')==='1'&&saved?.first&&saved?.last&&saved?.period){
-  document.getElementById('studentScreen').hidden=true;
-  document.getElementById('labContent').hidden=false;
-  document.getElementById('labProgress').hidden=false;
- }
-}catch(e){}
+// Always show Student Information when the lab is opened. Students must click Begin Practice Lab.
+
 })();
 </script></body>
 </html>
